@@ -65,11 +65,12 @@ public class MovieRepository {
         }
     }
 
-    public List<Movie> findAllMovies(){
-        List<Movie> moviesList = new ArrayList<>();
+    public List<String> findAllMovies(){
+        List<String> moviesList = new ArrayList<>();
 
         for (Map.Entry<String,Movie> movieEntry : movieHashMap.entrySet()){
-            moviesList.add(movieEntry.getValue());
+            Movie movie = (movieEntry.getValue());
+            moviesList.add(movie.getName());
         }
         return moviesList;
     }
