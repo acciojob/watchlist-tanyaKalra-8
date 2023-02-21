@@ -82,5 +82,6 @@ public class MovieRepository {
 
     public void deleteAllDirectors(){
         directorHashMap.clear();
+        movieDirectorHashMap.clear();
     }
 }
