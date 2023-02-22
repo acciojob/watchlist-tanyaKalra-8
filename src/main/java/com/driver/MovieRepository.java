@@ -75,14 +75,36 @@ public class MovieRepository {
         return moviesList;
     }
 
-    public void deleteDirectorByName(String director_name){
-        if (directorHashMap.containsKey(director_name)){
+    public void deleteDirectorByName(String director_name) {
+        if(movieDirectorHashMap.containsKey(director_name)){
+            List<String> movies = movieDirectorHashMap.get(director_name);
+
+            for(String movie: movies){
+                if(movieHashMap.containsKey(movie)){
+                    movieHashMap.remove(movie);
+                }
+            }
+            movieDirectorHashMap.remove(director_name);
+        }
+
+        if(directorHashMap.containsKey(director_name)){
             directorHashMap.remove(director_name);
         }
     }
 
     public void deleteAllDirectors(){
-        directorHashMap.clear();
-        //movieDirectorHashMap.clear();
+        for(String director: directorHashMap.keySet()){
+            List<String> movies = movieDirectorHashMap.get(director);
+
+            for(String movie: movies){
+                if(movieHashMap.containsKey(movie)){
+                    movieHashMap.remove(movie);
+                }
+            }
+            if (movieDirectorHashMap.containsKey(director)){
+                movieDirectorHashMap.remove(director);
+            }
+            directorHashMap.remove(director);
+        }
     }
 }
